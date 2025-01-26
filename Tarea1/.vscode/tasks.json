@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with OpenMP (macOS)",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-Xpreprocessor", "-fopenmp",
+                "-I/opt/homebrew/opt/libomp/include",   // Include path for omp.h
+                "-L/opt/homebrew/opt/libomp/lib",       // Library path for libomp
+                "-lomp",                                // Link against libomp
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compiles the active C++ file with OpenMP support for macOS."
+        }
+    ]
+}
